@@ -47,13 +47,17 @@ void insertionSort(size_t* arr, const size_t SIZE){
 
 size_t medianArray(size_t* arr, const size_t SIZE) {
 
+    size_t result = 0;
     size_t arMedianSize = 3;
     size_t *arMedian = new size_t[arMedianSize];
     arMedian[0] = arr[0];
     arMedian[1] = arr[SIZE / 2];
     arMedian[2] = arr[SIZE - 1];
     insertionSort(arMedian, arMedianSize);
-    return arMedian[1];
+    result = arMedian[1];
+    delete[] arMedian;
+    arMedian = nullptr;
+    return result;
 }
 
 void quickSort(size_t* arr, const size_t SIZE) {

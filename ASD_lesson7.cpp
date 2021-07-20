@@ -18,11 +18,13 @@ void fillArray(size_t* arr, const size_t SIZE, const size_t BORDER) {
 }
 
 void printArray(size_t* arr, const size_t SIZE, const size_t WIDTH) {
+    std::cout << std::endl;
     for (size_t i = 0; i < SIZE; i++) {
         if (i % 10 == 0 && i > 0) std::cout << std::endl;
         std::cout.width(WIDTH);
         std::cout << arr[i];
     }
+    std::cout << std::endl;
 }
 
 bool checkLenArray(const size_t SIZE) {
@@ -128,19 +130,14 @@ int main()
     const size_t SIZE = 100;
     const size_t BORDER = 99;
     const size_t WIDTH = 5;
-
-
+    
     size_t* arr = nullptr;
     arr = initArray(arr, SIZE);
     fillArray(arr, SIZE, BORDER);
     printArray(arr, SIZE, WIDTH);
-        std::cout << std::endl;
     bucketSort(arr, SIZE);
-        std::cout << std::endl;
     printArray(arr, SIZE, WIDTH);
-        std::cout << std::endl;
     quickSort(arr, SIZE);
-        std::cout << std::endl;
     printArray(arr, SIZE, WIDTH);
 
     deInitArray(arr);

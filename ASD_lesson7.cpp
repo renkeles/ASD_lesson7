@@ -19,8 +19,9 @@ void fillArray(size_t* arr, const size_t SIZE, const size_t BORDER) {
 
 void printArray(size_t* arr, const size_t SIZE, const size_t WIDTH) {
     for (size_t i = 0; i < SIZE; i++) {
+        if (i % 10 == 0 && i > 0) std::cout << std::endl;
         std::cout.width(WIDTH);
-        std::cout << arr[i];
+        std::cout << arr[i]; 
     }
 }
 
@@ -30,13 +31,7 @@ bool checkLenArray(const size_t SIZE) {
 
 size_t medianArray(size_t* arr, const size_t SIZE) {
     size_t median = 0;
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="arr"></param>
-    /// <param name="SIZE"></param>
-    /// <returns></returns>
+    median = (arr[0] + arr[SIZE - 1] + (arr[SIZE / 2 - 1])) / 3;
 
     return median;
 }
@@ -45,8 +40,8 @@ int main()
 {
     srand(time(0u));
 
-    const size_t SIZE = 100;
-    const size_t BORDER = 100;
+    const size_t SIZE = 50;
+    const size_t BORDER = 99;
     const size_t WIDTH = 5;
 
 
@@ -54,8 +49,7 @@ int main()
     arr = initArray(arr, SIZE);
     fillArray(arr, SIZE, BORDER);
     printArray(arr, SIZE, WIDTH);
-
-    
+        
     deInitArray(arr);
     return 0;
 }

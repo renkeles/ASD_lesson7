@@ -36,6 +36,30 @@ size_t medianArray(size_t* arr, const size_t SIZE) {
     return median;
 }
 
+void swap(size_t* a, size_t* b) {
+    size_t tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+void quickSort(size_t* arr, const size_t SIZE) {
+    
+    if (checkLenArray(SIZE)) {
+        
+    }
+    else {
+        for (size_t i = 0; i < SIZE; i++) {
+            size_t median = medianArray(arr, SIZE);
+            if (arr[0] < median) {
+                swap(&arr[0], &median);
+            }
+            if (arr[SIZE - i - 1] >= median) {
+                swap(&arr[SIZE - i - 1], &median);
+            }
+        }
+    }
+}
+
 int main()
 {
     srand(time(0u));
@@ -49,9 +73,13 @@ int main()
     arr = initArray(arr, SIZE);
     fillArray(arr, SIZE, BORDER);
     printArray(arr, SIZE, WIDTH);
+    quickSort(arr, SIZE);
+    std::cout << std::endl;
+    printArray(arr, SIZE, WIDTH);
         
     deInitArray(arr);
     return 0;
 }
+
 
 

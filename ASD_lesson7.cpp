@@ -1,9 +1,14 @@
-﻿#include <iostream>
+#include <iostream>
 #include <ctime>
 
 size_t* initArray(size_t* arr, const size_t SIZE) {
     arr = new size_t[SIZE];
     return arr;
+}
+
+void deInitArray(size_t* arr) {
+    delete[] arr;
+    arr = nullptr;
 }
 
 void fillArray(size_t* arr, const size_t SIZE, const size_t BORDER) {
@@ -51,7 +56,8 @@ int main()
     printArray(arr, SIZE, WIDTH);
 
     
-
+    deInitArray(arr);
     return 0;
 }
+
 

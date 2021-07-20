@@ -91,6 +91,36 @@ void quickSort(size_t* arr, const size_t SIZE) {
 
 }
 
+void bucketSort(size_t* arr, const size_t SIZE){
+    const size_t bucket = 10;
+
+    size_t buckets[bucket][SIZE + 1];
+    for(size_t i = 0; i < bucket; i++){
+        buckets[i][SIZE] = 0;
+    }
+
+    for(size_t digit = 1; digit < 100; digit *= 10){
+        for(size_t i = 0; i < SIZE; i++){
+            if(arr[i] % 2 == 0){
+                size_t d = (arr[i] / digit) % bucket;
+                size_t counter = buckets[d][SIZE];
+                buckets[d][counter] = arr[i];
+                counter++;
+                buckets[d][SIZE] = counter;
+                arr[i] = -1;
+            }
+        }
+        size_t id = 0;
+        for(size_t i = 0; i < bucket; ++i){
+            for(size_t j = 0; j < buckets[i][SIZE]; ++j){
+                while(arr[id] != -1) id++;
+                arr[id] = buckets[i][j];
+            }
+            buckets[i][SIZE] = 0;
+        }
+    }
+}
+
 int main()
 {
     srand(time(0u));
@@ -104,16 +134,16 @@ int main()
     arr = initArray(arr, SIZE);
     fillArray(arr, SIZE, BORDER);
     printArray(arr, SIZE, WIDTH);
-    std::cout << std::endl;
+        std::cout << std::endl;
+    bucketSort(arr, SIZE);
+        std::cout << std::endl;
+    printArray(arr, SIZE, WIDTH);
+        std::cout << std::endl;
     quickSort(arr, SIZE);
-    std::cout << std::endl;
+        std::cout << std::endl;
     printArray(arr, SIZE, WIDTH);
 
     deInitArray(arr);
     return 0;
 }
-
-
-
-
 
